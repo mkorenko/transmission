@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PrefsController">
@@ -13,7 +14,6 @@
                 <outlet property="fBlocklistDateField" destination="1738" id="1740"/>
                 <outlet property="fBlocklistMessageField" destination="1435" id="1463"/>
                 <outlet property="fBlocklistURLField" destination="1985" id="1994"/>
-                <outlet property="fBuiltInGrowlButton" destination="2104" id="2109"/>
                 <outlet property="fCheckForUpdatesBetaButton" destination="1895" id="2040"/>
                 <outlet property="fCheckForUpdatesButton" destination="650" id="2041"/>
                 <outlet property="fCheckForUpdatesLabel" destination="652" id="2042"/>
@@ -22,7 +22,6 @@
                 <outlet property="fFolderPopUp" destination="51" id="98"/>
                 <outlet property="fGeneralView" destination="28" id="71"/>
                 <outlet property="fGroupsView" destination="1760" id="1761"/>
-                <outlet property="fGrowlAppButton" destination="2113" id="2116"/>
                 <outlet property="fIdleStopField" destination="1959" id="1979"/>
                 <outlet property="fImportFolderPopUp" destination="216" id="225"/>
                 <outlet property="fIncompleteFolderPopUp" destination="538" id="551"/>
@@ -47,6 +46,7 @@
                 <outlet property="fSpeedLimitDownloadField" destination="190" id="626"/>
                 <outlet property="fSpeedLimitUploadField" destination="192" id="625"/>
                 <outlet property="fStalledField" destination="636" id="643"/>
+                <outlet property="fSystemPreferencesButton" destination="2113" id="A2i-2T-y7p"/>
                 <outlet property="fTransfersView" destination="41" id="72"/>
                 <outlet property="fUploadField" destination="156" id="624"/>
                 <outlet property="window" destination="23" id="82"/>
@@ -136,14 +136,14 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="2113">
-                    <rect key="frame" x="187" y="225" width="182" height="32"/>
+                    <rect key="frame" x="187" y="225" width="253" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="In Growl konfigurieren" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="2114">
+                    <buttonCell key="cell" type="push" title="In Systemeinstellungen konfigurieren" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="2114">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openGrowlApp:" target="-2" id="2117"/>
+                        <action selector="openNotificationSystemPrefs:" target="-2" id="WWJ-Nq-5jh"/>
                     </connections>
                 </button>
                 <button id="230">
@@ -201,17 +201,6 @@
                     <connections>
                         <action selector="setBadge:" target="-2" id="90"/>
                         <binding destination="365" name="value" keyPath="values.BadgeUploadRate" id="398"/>
-                    </connections>
-                </button>
-                <button id="2104">
-                    <rect key="frame" x="191" y="234" width="208" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Benachrichtigungen anzeigen" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2105">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="setBuiltInGrowlEnabled:" target="-2" id="2108"/>
                     </connections>
                 </button>
                 <button id="33">
@@ -673,7 +662,7 @@
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1960">
                                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#" negativeFormat="#" usesGroupingSeparator="NO" lenient="YES" paddingCharacter="*" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="1961">
                                                 <real key="minimum" value="1"/>
-                                                <real key="maximum" value="99999"/>
+                                                <real key="maximum" value="40320"/>
                                             </numberFormatter>
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1114,10 +1103,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="IOr-J0-Ikz">
                         <rect key="frame" x="1" y="1" width="158" height="197"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="18" id="1774">
-                                <rect key="frame" x="0.0" y="0.0" width="158" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="158" height="197"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1151,7 +1140,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.19672129999999999" horizontal="YES" id="1775">
                         <rect key="frame" x="-100" y="-100" width="470" height="15"/>
@@ -1974,10 +1962,10 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" id="mfY-sh-Bfh">
                         <rect key="frame" x="1" y="1" width="318" height="76"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" typeSelect="NO" id="1521">
-                                <rect key="frame" x="0.0" y="0.0" width="318" height="19"/>
+                                <rect key="frame" x="0.0" y="0.0" width="318" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2012,7 +2000,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1520">
                         <rect key="frame" x="-100" y="-100" width="327" height="15"/>

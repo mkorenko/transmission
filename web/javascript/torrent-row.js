@@ -100,11 +100,19 @@ TorrentRendererHelper.renderProgressbar = function (controller, t, progressbar) 
 };
 
 TorrentRendererHelper.formatUL = function (t) {
-    return '↑ ' + Transmission.fmt.speedBps(t.getUploadSpeed());
+    return '▲' + Transmission.fmt.speedBps(t.getUploadSpeed());
 };
 
 TorrentRendererHelper.formatDL = function (t) {
-    return '↓ ' + Transmission.fmt.speedBps(t.getDownloadSpeed());
+    return '▼' + Transmission.fmt.speedBps(t.getDownloadSpeed());
+};
+
+TorrentRendererHelper.formatETA = function(t) {
+    var eta = t.getETA();
+    if (eta < 0 || eta >= (999 * 60 * 60)) {
+        return "";
+    };
+    return "ETA: " + Transmission.fmt.timeInterval(eta);
 };
 
 /****
@@ -173,7 +181,7 @@ TorrentRendererFull.prototype = {
                     fmt.countString('peer', 'peers', peer_count),
                     'and',
                     fmt.countString('web seed', 'web seeds', webseed_count),
-                    '-',
+                    '–',
                     TorrentRendererHelper.formatDL(t),
                     TorrentRendererHelper.formatUL(t)
                 ].join(' ');
@@ -181,7 +189,7 @@ TorrentRendererFull.prototype = {
                 // Downloading from 2 webseed(s)
                 return ['Downloading from',
                     fmt.countString('web seed', 'web seeds', webseed_count),
-                    '-',
+                    '–',
                     TorrentRendererHelper.formatDL(t),
                     TorrentRendererHelper.formatUL(t)
                 ].join(' ');
@@ -191,7 +199,7 @@ TorrentRendererFull.prototype = {
                     t.getPeersSendingToUs(),
                     'of',
                     fmt.countString('peer', 'peers', peer_count),
-                    '-',
+                    '–',
                     TorrentRendererHelper.formatDL(t),
                     TorrentRendererHelper.formatUL(t)
                 ].join(' ');
@@ -328,6 +336,9 @@ TorrentRendererCompact.prototype = {
                 return 'Idle';
             };
             var s = '';
+            if (!isMobileDevice) {
+                s = TorrentRendererHelper.formatETA(t) + ' ';
+            };
             if (have_dn) {
                 s += TorrentRendererHelper.formatDL(t);
             };

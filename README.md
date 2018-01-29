@@ -8,6 +8,16 @@ Transmission is a fast, easy, and free BitTorrent client. It comes in several fl
 
 Visit https://transmissionbt.com/ for more information.
 
+## Command line interface notes
+
+Transmission is fully supported in transmission-remote, the preferred cli client.
+
+Three standalone tools to examine, create, and edit .torrent files exist: transmission-show, transmission-create, and transmission-edit, respectively.
+
+Prior to development of transmission-remote, the standalone client transmission-cli was created. Limited to a single torrent at a time, transmission-cli is deprecated and exists primarily to support older hardware dependent upon it. In almost all instances, transmission-remote should be used instead.
+
+Different distributions may choose to package any or all of these tools in one or more separate packages.
+
 ## Building
 
 Transmission has an Xcode project file (Transmission.xcodeproj) for building in Xcode.
@@ -16,35 +26,36 @@ For a more detailed description, and dependencies, visit: https://github.com/tra
 
 ### Building a Transmission release from the command line
 
-    $ xz -d -c transmission-2.11.tar.xz | tar xf -
-    $ cd transmission-2.11
-    $ ./configure
+    $ tar xf transmission-2.92.tar.xz
+    $ cd transmission-2.92
+    $ mkdir build
+    $ cmake ..
     $ make
     $ sudo make install
 
 ### Building Transmission from the nightly builds
 
-Download a tarball from https://build.transmissionbt.com/job/trunk-linux-inc/ and follow the steps from the previous section.
+Download a tarball from https://build.transmissionbt.com/job/trunk-linux/ and follow the steps from the previous section.
 
-If you're new to building programs from source code, this is typically easier than building from SVN.
+If you're new to building programs from source code, this is typically easier than building from Git.
 
-### Building Transmission from SVN (first time)
+### Building Transmission from Git (first time)
 
-    $ svn co svn://svn.transmissionbt.com/Transmission/trunk Transmission
+    $ git clone https://github.com/transmission/transmission Transmission
     $ cd Transmission
-    $ ./autogen.sh
+    $ git submodule update --init
+    $ mkdir build
+    $ cd build
+    $ cmake ..
     $ make
     $ sudo make install
 
-### Building Transmission from SVN (updating)
+### Building Transmission from Git (updating)
 
-    $ cd Transmission
+    $ cd Transmission/build
     $ make clean
-    $ svn up
-    $ ./update-version-h.sh
+    $ git pull --rebase --prune
+    $ git submodule update
+    $ cmake ..
     $ make
     $ sudo make install
-
-Notes for building on Solaris' C compiler: User av reports success with this invocation:
-
-    ./configure CC=c99 CXX=CC CFLAGS='-D__EXTENSIONS__ -mt'

@@ -6,11 +6,11 @@
  *
  */
 
-#ifndef __TRANSMISSION__
- #error only libtransmission should #include this header.
-#endif
-
 #pragma once
+
+#ifndef __TRANSMISSION__
+#error only libtransmission should #include this header.
+#endif
 
 /**
  * @addtogroup port_forwarding Port Forwarding
@@ -19,12 +19,10 @@
 
 typedef struct tr_upnp tr_upnp;
 
-tr_upnp * tr_upnpInit (void);
+tr_upnp* tr_upnpInit(void);
 
-void      tr_upnpClose (tr_upnp *);
+void tr_upnpClose(tr_upnp*);
 
-int       tr_upnpPulse (      tr_upnp *,
-                            int port,
-                            int isEnabled,
-                            int doPortCheck);
+int tr_upnpPulse(tr_upnp*, int port, bool isEnabled, bool doPortCheck);
+
 /* @} */
