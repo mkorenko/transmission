@@ -16,6 +16,7 @@
 #include <windows.h> /* CreateProcess(), GetLastError() */
 #endif
 
+#include <assert.h>
 #include <math.h>
 #include <stdarg.h>
 #include <string.h> /* memcmp */
