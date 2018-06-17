@@ -1147,10 +1147,8 @@ static void pieceListRebuild(tr_swarm* s)
         s->pieces = pieces;
         s->pieceCount = pieceCount;
 
-      if(s->tor->sequentialDownload)
-            pieceListSort (s, PIECES_SORTED_BY_INDEX);
-      else
-        pieceListSort(s, PIECES_SORTED_BY_WEIGHT);
+        const enum piece_sort_state swarm_pieces_order = s->tor->sequentialDownload ? PIECES_SORTED_BY_INDEX : PIECES_SORTED_BY_WEIGHT;
+        pieceListSort(s, swarm_pieces_order);
 
         /* cleanup */
         tr_free(pool);
@@ -1185,8 +1183,10 @@ static void pieceListResortPiece(tr_swarm* s, struct weighted_piece* p)
         return;
     }
 
-  if(s->tor->sequentialDownload)
-      return;
+    if (s->tor->sequentialDownload)
+    {
+        return;
+    }
 
     /* is the torrent already sorted? */
     pos = p - s->pieces;
@@ -1362,15 +1362,11 @@ void tr_peerMgrGetNextRequests(tr_torrent* tor, tr_peer* peer, int numwant, tr_b
         pieceListRebuild(s);
     }
 
-    if (tor->sequentialDownload)
+    const enum piece_sort_state swarm_pieces_order = tor->sequentialDownload ? PIECES_SORTED_BY_INDEX : PIECES_SORTED_BY_WEIGHT;
+
+    if (s->pieceSortState != swarm_pieces_order)
     {
-        if (s->pieceSortState != PIECES_SORTED_BY_INDEX)
-            pieceListSort(s, PIECES_SORTED_BY_INDEX);
-    }
-    else
-    {
-        if (s->pieceSortState != PIECES_SORTED_BY_WEIGHT)
-            pieceListSort(s, PIECES_SORTED_BY_WEIGHT);
+        pieceListSort(s, swarm_pieces_order);
     }
 
     assertReplicationCountIsExact(s);

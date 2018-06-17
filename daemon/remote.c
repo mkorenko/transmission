@@ -445,8 +445,8 @@ static int getOptMode(int val)
     case 952: /* no-seedratio */
     case 984: /* honor-session */
     case 985: /* no-honor-session */
-      case 500: /* sequential-download */
-      case 501: /* random-download */
+    case 500: /* sequential-download */
+    case 501: /* random-download */
         return MODE_TORRENT_SET;
 
     case 920: /* session-info */
@@ -956,8 +956,11 @@ static void printDetails(tr_variant* top)
                 printf("  Percent Done: %s%%\n", buf);
             }
 
-            if (tr_variantDictFindBool (t, TR_KEY_sequentialDownload, &boolVal))
-                printf ("  Sequential download: %s\n", (boolVal ? "Yes" : "No"));
+            if (tr_variantDictFindBool(t, TR_KEY_sequentialDownload, &boolVal))
+            {
+                printf("  Sequential download: %s\n", (boolVal ? "Yes" : "No"));
+            }
+
             if (tr_variantDictFindInt(t, TR_KEY_eta, &i))
             {
                 printf("  ETA: %s\n", tr_strltime(buf, i, sizeof(buf)));

@@ -277,7 +277,7 @@ msgstr "Прекратить раздачу при простое n-минут:"
 #: ../gtk/details.c:517 ../gtk/tr-prefs.c:1255
 msgid "Speed"
 msgstr "Скорость"
- 		 
+
 #: ../gtk/details.c
 msgid "Sequential download"
 msgstr "Последовательная загрузка"

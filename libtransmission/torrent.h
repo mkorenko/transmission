@@ -241,7 +241,7 @@ struct tr_torrent
     tr_idlelimit idleLimitMode;
     bool finishedSeedingByIdle;
 
-    bool                       sequentialDownload;
+    bool sequentialDownload;
 };
 
 static inline tr_torrent* tr_torrentNext(tr_session* session, tr_torrent* current)

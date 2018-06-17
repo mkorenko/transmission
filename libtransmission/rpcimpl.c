@@ -770,7 +770,7 @@ static void addField(tr_torrent* const tor, tr_info const* const inf, tr_stat co
         break;
 
     case TR_KEY_sequentialDownload:
-        tr_variantDictAddBool (d, key, tr_torrentGetSequentialDownload (tor));
+        tr_variantDictAddBool(d, key, tr_torrentGetSequentialDownload(tor));
         break;
 
     case TR_KEY_sizeWhenDone:
@@ -1325,9 +1325,9 @@ static char const* torrentSet(tr_session* session, tr_variant* args_in, tr_varia
             tr_torrentSetQueuePosition(tor, tmp);
         }
 
-        if (tr_variantDictFindBool (args_in, TR_KEY_sequentialDownload, &boolVal))
+        if (tr_variantDictFindBool(args_in, TR_KEY_sequentialDownload, &boolVal))
         {
-            tr_torrentSetSequentialDownload (tor, boolVal);
+            tr_torrentSetSequentialDownload(tor, boolVal);
         }
 
         if (errmsg == NULL && tr_variantDictFindList(args_in, TR_KEY_trackerAdd, &trackers))
