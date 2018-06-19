@@ -513,7 +513,7 @@ void DetailsDialog::refresh()
             }
         }
 
-        double const d = 100.0 * (sizeWhenDone != 0 ? (sizeWhenDone - leftUntilDone) / sizeWhenDone : 1);
+        double const d = sizeWhenDone != 0 ? 100.0 * (sizeWhenDone - leftUntilDone) / sizeWhenDone : 100.0;
         QString pct = Formatter::percentToString(d);
 
         if (haveUnverified == 0 && leftUntilDone == 0)
@@ -935,9 +935,17 @@ void DetailsDialog::refresh()
 
         // mySequentialCheck
         uniform = true;
-        baselineFlag = baseline.sequentialDownload ();
-        for (const Torrent * const tor: torrents) if (baselineFlag != tor->sequentialDownload ()) { uniform = false; break; }
-        ui.sequentialCheck->setChecked (uniform && baselineFlag);
+        baselineFlag = baseline.sequentialDownload();
+        for (Torrent const* const tor : torrents)
+        {
+            if (baselineFlag != tor->sequentialDownload())
+            {
+                uniform = false;
+                break;
+            }
+        }
+
+        ui.sequentialCheck->setChecked(uniform && baselineFlag);
 
         // mySessionLimitCheck
         uniform = true;
@@ -1292,8 +1300,8 @@ void DetailsDialog::onIdleLimitChanged()
 
 void DetailsDialog::onSequentialToggled (bool val)
 {
-    mySession.torrentSet (myIds, TR_KEY_sequentialDownload, val);
-    getNewData ();
+    mySession.torrentSet(myIds, TR_KEY_sequentialDownload, val);
+    getNewData();
 }
 
 void DetailsDialog::onRatioModeChanged(int index)
@@ -1460,7 +1468,7 @@ void DetailsDialog::initOptionsTab()
     connect(ui.idleSpin, SIGNAL(editingFinished()), SLOT(onSpinBoxEditingFinished()));
     connect(ui.idleSpin, SIGNAL(valueChanged(int)), SLOT(onIdleLimitChanged()));
     connect(ui.peerLimitSpin, SIGNAL(editingFinished()), SLOT(onSpinBoxEditingFinished()));
-    connect (ui.sequentialCheck, SIGNAL(clicked(bool)), SLOT(onSequentialToggled(bool)));
+    connect(ui.sequentialCheck, SIGNAL(clicked(bool)), SLOT(onSequentialToggled(bool)));
 }
 
 /***

@@ -961,7 +961,7 @@ static void torrentInit(tr_torrent* tor, tr_ctor const* ctor)
     tor->error = TR_STAT_OK;
     tor->finishedSeedingByIdle = false;
 
-  tor->sequentialDownload = false;
+    tor->sequentialDownload = false;
 
     tr_peerMgrAddTorrent(session->peerMgr, tor);
 
@@ -1431,10 +1431,10 @@ tr_stat const* tr_torrentStat(tr_torrent* tor)
     case TR_STATUS_DOWNLOAD:
         if (tor->etaDLSpeedCalculatedAt + 800 < now)
         {
-            tor->etaDLSpeedCalculatedAt = now;
             tor->etaDLSpeed_Bps = tor->etaDLSpeedCalculatedAt + 4000 < now ?
                 pieceDownloadSpeed_Bps : /* if no recent previous speed, no need to smooth */
                 (tor->etaDLSpeed_Bps * 4.0 + pieceDownloadSpeed_Bps) / 5.0; /* smooth across 5 readings */
+            tor->etaDLSpeedCalculatedAt = now;
         }
 
         if (s->leftUntilDone > s->desiredAvailable && tor->info.webseedCount < 1)
@@ -1462,10 +1462,10 @@ tr_stat const* tr_torrentStat(tr_torrent* tor)
         {
             if (tor->etaULSpeedCalculatedAt + 800 < now)
             {
-                tor->etaULSpeedCalculatedAt = now;
                 tor->etaULSpeed_Bps = tor->etaULSpeedCalculatedAt + 4000 < now ?
                     pieceUploadSpeed_Bps : /* if no recent previous speed, no need to smooth */
                     (tor->etaULSpeed_Bps * 4.0 + pieceUploadSpeed_Bps) / 5.0; /* smooth across 5 readings */
+                tor->etaULSpeedCalculatedAt = now;
             }
 
             if (tor->etaULSpeed_Bps == 0)
@@ -2540,23 +2540,20 @@ void tr_torrentSetPriority(tr_torrent* tor, tr_priority_t priority)
     {
         tor->bandwidth.priority = priority;
 
-      tr_torrentSetDirty (tor);
+        tr_torrentSetDirty(tor);
     }
 }
 
-bool
-tr_torrentGetSequentialDownload (const tr_torrent * tor)
+bool tr_torrentGetSequentialDownload(const tr_torrent* tor)
 {
-    assert (tr_isTorrent (tor));
+    TR_ASSERT(tr_isTorrent(tor));
 
     return tor->sequentialDownload;
 }
 
-void
-tr_torrentSetSequentialDownload (tr_torrent * tor, bool sequential)
+void tr_torrentSetSequentialDownload(tr_torrent* tor, bool sequential)
 {
-    assert (tr_isTorrent (tor));
-
+    TR_ASSERT(tr_isTorrent(tor));
 
     if (tor->sequentialDownload != sequential)
     {

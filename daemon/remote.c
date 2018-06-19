@@ -445,8 +445,8 @@ static int getOptMode(int val)
     case 952: /* no-seedratio */
     case 984: /* honor-session */
     case 985: /* no-honor-session */
-      case 500: /* sequential-download */
-      case 501: /* random-download */
+    case 500: /* sequential-download */
+    case 501: /* random-download */
         return MODE_TORRENT_SET;
 
     case 920: /* session-info */
@@ -956,8 +956,11 @@ static void printDetails(tr_variant* top)
                 printf("  Percent Done: %s%%\n", buf);
             }
 
-            if (tr_variantDictFindBool (t, TR_KEY_sequentialDownload, &boolVal))
-                printf ("  Sequential download: %s\n", (boolVal ? "Yes" : "No"));
+            if (tr_variantDictFindBool(t, TR_KEY_sequentialDownload, &boolVal))
+            {
+                printf("  Sequential download: %s\n", (boolVal ? "Yes" : "No"));
+            }
+
             if (tr_variantDictFindInt(t, TR_KEY_eta, &i))
             {
                 printf("  ETA: %s\n", tr_strltime(buf, i, sizeof(buf)));
@@ -2062,11 +2065,26 @@ static CURL* tr_curl_easy_init(struct evbuffer* writebuf)
     {
         char* h = tr_strdup_printf("%s: %s", TR_RPC_SESSION_ID_HEADER, sessionId);
         struct curl_slist* custom_headers = curl_slist_append(NULL, h);
+        tr_free(h);
+
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, custom_headers);
-        /* fixme: leaks */
+        curl_easy_setopt(curl, CURLOPT_PRIVATE, custom_headers);
     }
 
     return curl;
+}
+
+static void tr_curl_easy_cleanup(CURL* curl)
+{
+    struct curl_slist* custom_headers = NULL;
+    curl_easy_getinfo(curl, CURLINFO_PRIVATE, &custom_headers);
+
+    curl_easy_cleanup(curl);
+
+    if (custom_headers != NULL)
+    {
+        curl_slist_free_all(custom_headers);
+    }
 }
 
 static int flush(char const* rpcurl, tr_variant** benc)
@@ -2108,13 +2126,14 @@ static int flush(char const* rpcurl, tr_variant** benc)
             /* Session id failed. Our curl header func has already
              * pulled the new session id from this response's headers,
              * build a new CURL* and try again */
-            curl_easy_cleanup(curl);
+            tr_curl_easy_cleanup(curl);
             curl = NULL;
             status |= flush(rpcurl, benc);
             benc = NULL;
             break;
 
         default:
+            evbuffer_add(buf, "", 1);
             fprintf(stderr, "Unexpected response: %s\n", evbuffer_pullup(buf, -1));
             status |= EXIT_FAILURE;
             break;
@@ -2128,12 +2147,13 @@ static int flush(char const* rpcurl, tr_variant** benc)
 
     if (curl != NULL)
     {
-        curl_easy_cleanup(curl);
+        tr_curl_easy_cleanup(curl);
     }
 
     if (benc != NULL)
     {
         tr_variantFree(*benc);
+        tr_free(*benc);
         *benc = NULL;
     }
 

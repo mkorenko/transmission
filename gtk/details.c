@@ -35,7 +35,7 @@ struct DetailsImpl
 {
     GtkWidget* dialog;
 
-  GtkWidget * sequential_check;
+    GtkWidget* sequential_check;
     GtkWidget* honor_limits_check;
     GtkWidget* up_limited_check;
     GtkWidget* up_limit_sping;
@@ -49,7 +49,7 @@ struct DetailsImpl
     GtkWidget* idle_spin;
     GtkWidget* max_peers_spin;
 
-  gulong sequential_check_tag;
+    gulong sequential_check_tag;
     gulong honor_limits_check_tag;
     gulong up_limited_check_tag;
     gulong down_limited_check_tag;
@@ -184,18 +184,21 @@ static void refreshOptions(struct DetailsImpl* di, tr_torrent** torrents, int n)
     ****  Options Page
     ***/
 
-  /* sequential_check */
-  if (n)
+    /* sequential_check */
+    if (n != 0)
     {
-      int i;
-      const bool baseline = tr_torrentGetSequentialDownload (torrents[0]);
+        const bool baseline = tr_torrentGetSequentialDownload(torrents[0]);
+        bool is_uniform = true;
 
-      for (i=1; i<n; ++i)
-        if (baseline != tr_torrentGetSequentialDownload (torrents[i]))
-          break;
+        for (int i = 1; is_uniform && i < n; ++i)
+        {
+            is_uniform = baseline == tr_torrentGetSequentialDownload(torrents[i]);
+        }
 
-      if (i == n)
-        set_togglebutton_if_different (di->sequential_check, di->sequential_check_tag, baseline);
+        if (is_uniform)
+        {
+            set_togglebutton_if_different(di->sequential_check, di->sequential_check_tag, baseline);
+        }
     }
 
     /* honor_limits_check */
@@ -474,13 +477,12 @@ static void max_peers_spun_cb(GtkSpinButton* s, struct DetailsImpl* di)
     torrent_set_int(di, TR_KEY_peer_limit, gtk_spin_button_get_value(s));
 }
 
-static void onPriorityChanged(GtkComboBox* combo_box, struct DetailsImpl* di)
-sequential_toggled_cb (GtkToggleButton * tb, gpointer d)
+static void sequential_toggled_cb(GtkToggleButton* tb, gpointer d)
 {
-  torrent_set_bool (d, TR_KEY_sequentialDownload, gtk_toggle_button_get_active (tb));
+    torrent_set_bool(d, TR_KEY_sequentialDownload, gtk_toggle_button_get_active(tb));
 }
 
-static void
+static void onPriorityChanged(GtkComboBox* combo_box, struct DetailsImpl* di)
 {
     tr_priority_t const priority = gtr_priority_combo_get_value(combo_box);
     torrent_set_int(di, TR_KEY_bandwidthPriority, priority);
@@ -538,10 +540,10 @@ static GtkWidget* options_page_new(struct DetailsImpl* d)
     t = hig_workarea_create();
     hig_workarea_add_section_title(t, &row, _("Speed"));
 
-  tb = hig_workarea_add_wide_checkbutton (t, &row, _("Sequential download"), 0);
-  d->sequential_check = tb;
-  tag = g_signal_connect (tb, "toggled", G_CALLBACK (sequential_toggled_cb), d);
-  d->sequential_check_tag = tag;
+    tb = hig_workarea_add_wide_checkbutton(t, &row, _("Sequential download"), 0);
+    d->sequential_check = tb;
+    tag = g_signal_connect(tb, "toggled", G_CALLBACK(sequential_toggled_cb), d);
+    d->sequential_check_tag = tag;
 
     tb = hig_workarea_add_wide_checkbutton(t, &row, _("Honor global _limits"), 0);
     d->honor_limits_check = tb;
