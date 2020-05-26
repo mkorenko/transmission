@@ -68,11 +68,11 @@ Property constexpr myProperties[] =
     { Torrent::SEED_RATIO_MODE, TR_KEY_seedRatioMode, QVariant::Int },
     { Torrent::SEED_IDLE_LIMIT, TR_KEY_seedIdleLimit, QVariant::Int },
     { Torrent::SEED_IDLE_MODE, TR_KEY_seedIdleMode, QVariant::Int },
-    { Torrent::SEQUENTIAL_DOWNLOAD, TR_KEY_sequentialDownload, QVariant::Bool },
     { Torrent::DOWN_LIMIT, TR_KEY_downloadLimit, QVariant::Int }, /* KB/s */
     { Torrent::DOWN_LIMITED, TR_KEY_downloadLimited, QVariant::Bool },
     { Torrent::UP_LIMIT, TR_KEY_uploadLimit, QVariant::Int }, /* KB/s */
     { Torrent::UP_LIMITED, TR_KEY_uploadLimited, QVariant::Bool },
+    { Torrent::SEQUENTIAL_DOWNLOAD, TR_KEY_sequentialDownload, QVariant::Bool },
     { Torrent::HONORS_SESSION_LIMITS, TR_KEY_honorsSessionLimits, QVariant::Bool },
     { Torrent::PEER_LIMIT, TR_KEY_peer_limit, QVariant::Int },
     { Torrent::HASH_STRING, TR_KEY_hashString, QVariant::String },
