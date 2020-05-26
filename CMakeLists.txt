@@ -44,8 +44,8 @@ set(TR_NAME ${PROJECT_NAME})
 #         "Z" for unsupported trunk builds,
 #         "0" for stable, supported releases
 # these should be the only two lines you need to change
-set(TR_USER_AGENT_PREFIX "3.00")
-set(TR_PEER_ID_PREFIX "-TR3000-")
+set(TR_USER_AGENT_PREFIX "3.00+")
+set(TR_PEER_ID_PREFIX "-TR300Z-")
 
 string(REGEX MATCH "^([0-9]+)\\.([0-9]+).*" TR_VERSION "${TR_USER_AGENT_PREFIX}")
 set(TR_VERSION_MAJOR "${CMAKE_MATCH_1}")
@@ -521,6 +521,17 @@ else()
     if(NOT LIB MATCHES "^(|c)$")
         list(APPEND TR_NETWORK_LIBRARIES ${LIB})
     endif()
+endif()
+
+if(NOT CMAKE_VERSION VERSION_LESS "3.7.2")
+  message(STATUS "Looking for clang-tidy")
+  find_program(CLANG_TIDY clang-tidy)
+  if (CLANG_TIDY STREQUAL "CLANG_TIDY-NOTFOUND")
+    message(STATUS "Looking for clang-tidy - not found")
+  else()
+    message(STATUS "Looking for clang-tidy - found")
+    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY}")
+  endif()
 endif()
 
 if(ENABLE_TESTS)
