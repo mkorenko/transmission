@@ -43,8 +43,6 @@ public:
         myQueue.enqueue(qMakePair(normalizeFunc(func), normalizeErrorHandler(errorHandler)));
     }
 
-    RpcResponseFuture future();
-
     // The first function in queue is ran synchronously
     // (hence it may be e. g. a lambda capturing local variables by reference).
     void run();
@@ -52,7 +50,7 @@ public:
 private:
     // Internally queued function. Takes the last response future, makes a
     // request and returns a new response future.
-    typedef std::function<RpcResponseFuture (RpcResponseFuture const&)> QueuedFunction;
+    typedef std::function<RpcResponseFuture(RpcResponseFuture const&)> QueuedFunction;
 
     // Internally stored error handler function. Takes the last response future and returns nothing.
     typedef std::function<void (RpcResponseFuture const&)> ErrorHandlerFunction;
@@ -68,7 +66,7 @@ private:
     // normal closure, takes response and returns new future
     template<typename Func, typename std::enable_if<
         std::is_same<typename std::result_of<Func(RpcResponse const&)>::type, RpcResponseFuture>::value
-    >::type* = nullptr>
+        >::type* = nullptr>
     QueuedFunction normalizeFunc(Func const& func)
     {
         return [func](RpcResponseFuture const& r)
@@ -80,7 +78,7 @@ private:
     // closure without argument (first step), takes nothing and returns new future
     template<typename Func, typename std::enable_if<
         std::is_same<typename std::result_of<Func()>::type, RpcResponseFuture>::value
-    >::type* = nullptr>
+        >::type* = nullptr>
     QueuedFunction normalizeFunc(Func const& func)
     {
         return [func](RpcResponseFuture const&)
@@ -92,7 +90,7 @@ private:
     // closure without return value ("auxiliary"), takes response and returns nothing -- internally we reuse the last future
     template<typename Func, typename std::enable_if<
         std::is_same<typename std::result_of<Func(RpcResponse const&)>::type, void>::value
-    >::type* = nullptr>
+        >::type* = nullptr>
     QueuedFunction normalizeFunc(Func const& func)
     {
         return [func](RpcResponseFuture const& r)
@@ -105,7 +103,7 @@ private:
     // closure without argument and return value, takes nothing and returns nothing -- next function will also get nothing
     template<typename Func, typename std::enable_if<
         std::is_same<typename std::result_of<Func()>::type, void>::value
-    >::type* = nullptr>
+        >::type* = nullptr>
     QueuedFunction normalizeFunc(Func const& func)
     {
         return [func](RpcResponseFuture const& r)
@@ -118,7 +116,7 @@ private:
     // normal error handler, takes last response
     template<typename Func, typename std::enable_if<
         std::is_same<typename std::result_of<Func(RpcResponse const&)>::type, void>::value
-    >::type* = nullptr>
+        >::type* = nullptr>
     ErrorHandlerFunction normalizeErrorHandler(Func const& func)
     {
         return [func](RpcResponseFuture const& r)
@@ -130,10 +128,10 @@ private:
     // error handler without an argument, takes nothing
     template<typename Func, typename std::enable_if<
         std::is_same<typename std::result_of<Func()>::type, void>::value
-    >::type* = nullptr>
+        >::type* = nullptr>
     ErrorHandlerFunction normalizeErrorHandler(Func const& func)
     {
-        return [func](RpcResponseFuture const& r)
+        return [func](RpcResponseFuture const&)
             {
                 func();
             };

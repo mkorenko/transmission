@@ -14,7 +14,7 @@
         <translation>&lt;b style=&apos;font-size:x-large&apos;&gt;Transmission %1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="+26"/>
+        <location filename="../AboutDialog.ui" line="+29"/>
         <source>A fast and easy BitTorrent client</source>
         <translation>სწრაფი და მარტივი BitTorrent კლიენტი</translation>
     </message>
@@ -42,7 +42,7 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../Application.cc" line="+355"/>
+        <location filename="../Application.cc" line="+343"/>
         <source>&lt;b&gt;Transmission is a file sharing program.&lt;/b&gt;</source>
         <translation>&lt;b&gt;Transmission ფაილების გასაზიარებელი პროგრამაა.&lt;/b&gt;</translation>
     </message>
@@ -56,21 +56,27 @@
         <source>I &amp;Agree</source>
         <translation>&amp;ვეთანხმები</translation>
     </message>
-    <message>
-        <location line="+92"/>
-        <source>Torrent Completed</source>
-        <translation>ტორენტი დასრულდა</translation>
+    <message numerus="yes">
+        <location line="+77"/>
+        <source>Torrent(s) Added</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
-    <message>
-        <location line="+26"/>
-        <source>Torrent Added</source>
-        <translation>ტორენტი დაემატა</translation>
+    <message numerus="yes">
+        <location line="+10"/>
+        <source>Torrent Completed</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
     <name>DetailsDialog</name>
     <message>
-        <location filename="../DetailsDialog.cc" line="+408"/>
+        <location filename="../DetailsDialog.cc" line="+378"/>
         <source>None</source>
         <translation>არაფერი</translation>
     </message>
@@ -96,7 +102,7 @@
         <translation>შეჩერებული</translation>
     </message>
     <message>
-        <location line="+250"/>
+        <location line="+251"/>
         <source>Active now</source>
         <translation>ახლა აქტიური</translation>
     </message>
@@ -110,7 +116,7 @@
         <source>%1 (%Ln pieces @ %2)</source>
         <translation>
             <numerusform>%1 (%Ln ნაწილი @ %2)</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%1 (%Ln ნაწილი @ %2)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -118,7 +124,7 @@
         <source>%1 (%Ln pieces)</source>
         <translation>
             <numerusform>%1 (%Ln ნაწილი)</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%1 (%Ln ნაწილი)</numerusform>
         </translation>
     </message>
     <message>
@@ -137,12 +143,12 @@
         <translation>ავტორი: %1</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>Created on %1</source>
         <translation>შექმნილი - %1</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>Created by %1 on %2</source>
         <translation>ავტორი %1 - %2</translation>
     </message>
@@ -203,12 +209,12 @@
         <translation>პირი შემომავალი კავშირია</translation>
     </message>
     <message numerus="yes">
-        <location line="+136"/>
+        <location line="+142"/>
         <source> minute(s)</source>
         <extracomment>Spin box suffix, &quot;Stop seeding if idle for: [ 5 minutes ]&quot; (includes leading space after the number, if needed)</extracomment>
         <translation>
             <numerusform>წუთი</numerusform>
-            <numerusform></numerusform>
+            <numerusform>წუთი</numerusform>
         </translation>
     </message>
     <message>
@@ -224,7 +230,7 @@
         <translation>ტრეკერი უკვე არსებობს.</translation>
     </message>
     <message>
-        <location line="-815"/>
+        <location line="-824"/>
         <source>%1 (100%)</source>
         <extracomment>Text following the &quot;Have:&quot; label in torrent properties dialog; %1 is amount of downloaded and verified data</extracomment>
         <translation>%1 (100%)</translation>
@@ -252,17 +258,17 @@
         <translation>%1 (შეფარდება: %2)</translation>
     </message>
     <message>
-        <location line="+276"/>
+        <location line="+277"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location line="+260"/>
+        <location line="+262"/>
         <source>Peer is connected over uTP</source>
         <translation>პირი დაკავშირებულია uTP-ს გამოყენებით</translation>
     </message>
     <message>
-        <location line="+166"/>
+        <location line="+172"/>
         <source>Add URL </source>
         <translation>URL-ს დამატება </translation>
     </message>
@@ -288,7 +294,7 @@
         <translation>ტრეკერის გამოცხადების URL-ს რედაქტირება:</translation>
     </message>
     <message>
-        <location line="+61"/>
+        <location line="+59"/>
         <source>High</source>
         <translation>მაღალი</translation>
     </message>
@@ -329,7 +335,7 @@
         <translation>სიდირების შეჩერება უმოქმედობის:</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+64"/>
         <source>Up</source>
         <translation>ატ.</translation>
     </message>
@@ -552,7 +558,7 @@
 <context>
     <name>FileTreeItem</name>
     <message>
-        <location filename="../FileTreeItem.cc" line="+289"/>
+        <location filename="../FileTreeItem.cc" line="+290"/>
         <location filename="../FileTreeView.cc" line="+108"/>
         <location line="+285"/>
         <source>Low</source>
@@ -643,13 +649,13 @@
 <context>
     <name>FilterBar</name>
     <message>
-        <location filename="../FilterBar.cc" line="+67"/>
-        <location line="+167"/>
+        <location filename="../FilterBar.cc" line="+47"/>
+        <location line="+133"/>
         <source>All</source>
         <translation>ყველა</translation>
     </message>
     <message>
-        <location line="-160"/>
+        <location line="-126"/>
         <source>Active</source>
         <translation>აქტიური</translation>
     </message>
@@ -684,7 +690,7 @@
         <translation>შეცდომიანი</translation>
     </message>
     <message>
-        <location line="+165"/>
+        <location line="+131"/>
         <source>Show:</source>
         <translation>გამოჩნდეს:</translation>
     </message>
@@ -790,7 +796,7 @@
         <source>%Ln day(s)</source>
         <translation>
             <numerusform>%Ln დღე</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%Ln დღე</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -798,7 +804,7 @@
         <source>%Ln hour(s)</source>
         <translation>
             <numerusform>%Ln საათი</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%Ln საათი</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -806,7 +812,7 @@
         <source>%Ln minute(s)</source>
         <translation>
             <numerusform>%Ln წუთი</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%Ln წუთი</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -814,7 +820,7 @@
         <source>%Ln second(s)</source>
         <translation>
             <numerusform>%Ln წამი</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%Ln წამი</numerusform>
         </translation>
     </message>
     <message>
@@ -1226,7 +1232,7 @@
         <translation>დალაგება &amp;რიგით</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="+471"/>
+        <location filename="../MainWindow.cc" line="+465"/>
         <source>Limit Download Speed</source>
         <translation>ჩამოტვირთვის სიჩქარის შეზღუდვა</translation>
     </message>
@@ -1237,13 +1243,13 @@
     </message>
     <message>
         <location line="+6"/>
-        <location line="+702"/>
+        <location line="+734"/>
         <location line="+8"/>
         <source>Limited at %1</source>
         <translation>შეზღუდული %1-ზე</translation>
     </message>
     <message>
-        <location line="-661"/>
+        <location line="-693"/>
         <source>Limit Upload Speed</source>
         <translation>ატვირთვის სიჩქარის შეზღუდვა</translation>
     </message>
@@ -1259,23 +1265,23 @@
     </message>
     <message>
         <location line="+6"/>
-        <location line="+689"/>
+        <location line="+721"/>
         <source>Stop at Ratio (%1)</source>
         <translation>შეჩერება ამ შეფარდებაზე (%1)</translation>
     </message>
     <message>
-        <location line="-441"/>
+        <location line="-406"/>
         <source> - %1:%2</source>
         <extracomment>Second (optional) part of main window title &quot;Transmission - host:port&quot; (added when connected to remote session); notice that leading space (before the dash) is included here</extracomment>
         <translation> - %1:%2</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+16"/>
         <source>Idle</source>
         <translation>უმოქმედო</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+29"/>
         <location line="+17"/>
         <source>Ratio: %1</source>
         <translation>შეფარდება: %1</translation>
@@ -1287,7 +1293,7 @@
         <translation>ჩამ.: %1, ატვ.: %2</translation>
     </message>
     <message>
-        <location line="+470"/>
+        <location line="+455"/>
         <source>Torrent Files (*.torrent);;All Files (*.*)</source>
         <translation>ტორენტ ფაილები (*.torrent);;ყველა ფაილი (*.*)</translation>
     </message>
@@ -1302,17 +1308,17 @@
         <translation>ტორენტის გახსნა</translation>
     </message>
     <message>
-        <location line="-972"/>
+        <location line="-988"/>
         <source>Speed Limits</source>
         <translation>სიჩქარის ლიმიტები</translation>
     </message>
     <message>
-        <location line="+454"/>
+        <location line="+490"/>
         <source>Network Error</source>
         <translation>ქსელის შეცდომა</translation>
     </message>
     <message>
-        <location line="+484"/>
+        <location line="+464"/>
         <source>Click to disable Temporary Speed Limits
  (%1 down, %2 up)</source>
         <translation>დააწკაპუნეთ სიჩქარის დროებითი შეზღუდვების გამოსართავად
@@ -1340,24 +1346,25 @@
         <source>Remove %Ln torrent(s)?</source>
         <translation>
             <numerusform>ამოღებულ იქნას %Ln ტორენტი?</numerusform>
-            <numerusform></numerusform>
+            <numerusform>ამოღებულ იქნას %Ln ტორენტი?</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="-555"/>
+        <location line="-540"/>
         <source>Showing %L1 of %Ln torrent(s)</source>
         <translation>
             <numerusform>ნაჩვენებია %L1 ტორენტი %Ln-დან</numerusform>
-            <numerusform></numerusform>
+            <numerusform>ნაჩვენებია %L1 ტორენტი %Ln-დან</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+560"/>
+        <location line="+545"/>
         <source>Delete these %Ln torrent(s)&apos; downloaded files?</source>
         <translation>
             <numerusform>წაიშალოს ამ %Ln ტორენტების ჩამოტვირთული ფაილები?
 </numerusform>
-            <numerusform></numerusform>
+            <numerusform>წაიშალოს ამ %Ln ტორენტების ჩამოტვირთული ფაილები?
+</numerusform>
         </translation>
     </message>
     <message>
@@ -1411,7 +1418,7 @@
         <translation>ზოგიერთ ტორენტს ჩამოტვირთვა არ დაუსრულებია.</translation>
     </message>
     <message>
-        <location line="+72"/>
+        <location line="+69"/>
         <source>%1 has not responded yet</source>
         <translation>%1-ს ჯერ არ უპასუხია</translation>
     </message>
@@ -1448,7 +1455,7 @@
         <source>%Ln File(s)</source>
         <translation>
             <numerusform>%Ln ფაილი</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%Ln ფაილი</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -1457,7 +1464,8 @@
         <translation>
             <numerusform>%Ln ნაწილი
 </numerusform>
-            <numerusform></numerusform>
+            <numerusform>%Ln ნაწილი
+</numerusform>
         </translation>
     </message>
     <message>
@@ -1792,7 +1800,7 @@ To add another primary URL, add it after a blank line.</source>
         <extracomment>Spin box suffix, &quot;Stop seeding if idle for: [ 5 minutes ]&quot; (includes leading space after the number, if needed)</extracomment>
         <translation>
             <numerusform>წუთი</numerusform>
-            <numerusform></numerusform>
+            <numerusform>წუთი</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -1801,7 +1809,7 @@ To add another primary URL, add it after a blank line.</source>
         <extracomment>Spin box suffix, &quot;Download is inactive if data sharing stopped: [ 5 minutes ago ]&quot; (includes leading space after the number, if needed)</extracomment>
         <translation>
             <numerusform>წუთის წინ</numerusform>
-            <numerusform></numerusform>
+            <numerusform>წუთის წინ</numerusform>
         </translation>
     </message>
     <message>
@@ -1854,7 +1862,7 @@ To add another primary URL, add it after a blank line.</source>
         <source>&lt;i&gt;Blocklist contains %Ln rule(s)&lt;/i&gt;</source>
         <translation>
             <numerusform>&lt;i&gt;შავი სია შეიცავს %Ln წესს&lt;/i&gt;</numerusform>
-            <numerusform></numerusform>
+            <numerusform>&lt;i&gt;შავი სია შეიცავს %Ln წესს&lt;/i&gt;</numerusform>
         </translation>
     </message>
     <message>
@@ -1882,7 +1890,7 @@ To add another primary URL, add it after a blank line.</source>
         <source>&lt;b&gt;Update succeeded!&lt;/b&gt;&lt;p&gt;Blocklist now has %Ln rule(s).</source>
         <translation>
             <numerusform>&lt;b&gt;წარმატებით განახლდა!&lt;/b&gt;&lt;p&gt;შავი სია ახლა შეიცავს %Ln წესს.</numerusform>
-            <numerusform></numerusform>
+            <numerusform>&lt;b&gt;წარმატებით განახლდა!&lt;/b&gt;&lt;p&gt;შავი სია ახლა შეიცავს %Ln წესს.</numerusform>
         </translation>
     </message>
     <message>
@@ -2161,7 +2169,7 @@ To add another primary URL, add it after a blank line.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Application.cc" line="-301"/>
+        <location filename="../Application.cc" line="-258"/>
         <source>Invalid option</source>
         <translation>არასწორი პარამეტრი</translation>
     </message>
@@ -2202,7 +2210,7 @@ To add another primary URL, add it after a blank line.</source>
 <context>
     <name>Session</name>
     <message>
-        <location filename="../Session.cc" line="+541"/>
+        <location filename="../Session.cc" line="+531"/>
         <source>Error Renaming Path</source>
         <translation>ბილიკის გადარქმევის შეცდომა</translation>
     </message>
@@ -2212,19 +2220,19 @@ To add another primary URL, add it after a blank line.</source>
         <translation>&lt;p&gt;&lt;b&gt;ვერ მოხერხდა &quot;%1-ის&quot; &quot;%2&quot;: %3-ად გადარქმევა.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;გთხოვთ გამოასწორეთ შეცდომები და სცადეთ ხელახლა.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location line="+449"/>
+        <location line="+450"/>
         <source>Error Adding Torrent</source>
-        <translation type="unfinished">ტორენტის დამატების შეცდომა</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+21"/>
         <source>Add Torrent</source>
         <translation>ტორენტის დამატება</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&lt;p&gt;&lt;b&gt;Unable to add &quot;%1&quot;.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;It is a duplicate of &quot;%2&quot; which is already added.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;&lt;b&gt;&quot;%1&quot; ვერ დაემატა.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;ის არის უკვე დამატებული ფაილის &quot;%2&quot; ასლი.&lt;/p&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2321,14 +2329,14 @@ To add another primary URL, add it after a blank line.</source>
         <source>Started %Ln time(s)</source>
         <translation>
             <numerusform>გაშვებულია %Ln-ჯერ</numerusform>
-            <numerusform></numerusform>
+            <numerusform>გაშვებულია %Ln-ჯერ</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>Torrent</name>
     <message>
-        <location filename="../Torrent.cc" line="+1014"/>
+        <location filename="../Torrent.cc" line="+1043"/>
         <source>Verifying local data</source>
         <translation>ადგილობრივი მონაცემების გადამოწმება</translation>
     </message>
@@ -2444,7 +2452,7 @@ To add another primary URL, add it after a blank line.</source>
         <extracomment>First part of phrase &quot;Downloading from ... peer(s) and ... web seed(s)&quot;</extracomment>
         <translation>
             <numerusform>იტვირთება %Ln პირისგან</numerusform>
-            <numerusform></numerusform>
+            <numerusform>იტვირთება %Ln პირისგან</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2452,20 +2460,20 @@ To add another primary URL, add it after a blank line.</source>
         <source>Seeding to %Ln peer(s)</source>
         <translation>
             <numerusform>სიდირდება %Ln პირზე</numerusform>
-            <numerusform></numerusform>
+            <numerusform>სიდირდება %Ln პირზე</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+22"/>
         <source> - </source>
         <translation> - </translation>
     </message>
     <message numerus="yes">
-        <location line="-53"/>
+        <location line="-54"/>
         <source>Downloading metadata from %Ln peer(s) (%1% done)</source>
         <translation>
             <numerusform>მეტამონაცემების ჩამოტვირთვა %Ln პირისგან (%1% დასრულდა)</numerusform>
-            <numerusform></numerusform>
+            <numerusform>მეტამონაცემების ჩამოტვირთვა %Ln პირისგან (%1% დასრულდა)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2474,7 +2482,7 @@ To add another primary URL, add it after a blank line.</source>
         <extracomment>First part of phrase &quot;Downloading from ... of ... connected peer(s) and ... web seed(s)&quot;</extracomment>
         <translation>
             <numerusform>იტვირთება %Ln დაკავშირებულ პირთაგან %1-სგან</numerusform>
-            <numerusform></numerusform>
+            <numerusform>იტვირთება %Ln დაკავშირებულ პირთაგან %1-სგან</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2483,7 +2491,7 @@ To add another primary URL, add it after a blank line.</source>
         <extracomment>Second (optional) part of phrase &quot;Downloading from ... of ... connected peer(s) and ... web seed(s)&quot;; notice that leading space (before &quot;and&quot;) is included here</extracomment>
         <translation>
             <numerusform>და %Ln ვებ სიდისგან</numerusform>
-            <numerusform></numerusform>
+            <numerusform>და %Ln ვებ სიდისგან</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2491,16 +2499,16 @@ To add another primary URL, add it after a blank line.</source>
         <source>Seeding to %1 of %Ln connected peer(s)</source>
         <translation>
             <numerusform>სიდირდება %Ln დაკავშირებულ პირთაგან %1-ზე</numerusform>
-            <numerusform></numerusform>
+            <numerusform>სიდირდება %Ln დაკავშირებულ პირთაგან %1-ზე</numerusform>
         </translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Error</source>
         <translation>შეცდომა</translation>
     </message>
     <message>
-        <location line="-81"/>
+        <location line="-82"/>
         <source>Verifying local data (%1% tested)</source>
         <translation>ადგილობრივი მონაცემების გადამოწმება (%1% შემოწმებულია)</translation>
     </message>
@@ -2508,12 +2516,12 @@ To add another primary URL, add it after a blank line.</source>
 <context>
     <name>TrackerDelegate</name>
     <message numerus="yes">
-        <location filename="../TrackerDelegate.cc" line="+218"/>
+        <location filename="../TrackerDelegate.cc" line="+211"/>
         <source>Got a list of%1 %Ln peer(s)%2 %3 ago</source>
         <extracomment>%1 and %2 are replaced with HTML markup, %3 is duration</extracomment>
         <translation>
             <numerusform>მიღებული იქნა სია %1 %Ln პირით%2 %3ს წინ</numerusform>
-            <numerusform></numerusform>
+            <numerusform>მიღებული იქნა სია %1 %Ln პირით%2 %3ს წინ</numerusform>
         </translation>
     </message>
     <message>
@@ -2556,7 +2564,7 @@ To add another primary URL, add it after a blank line.</source>
         <extracomment>First part of phrase &quot;Tracker had ... seeder(s) and ... leecher(s) ... ago&quot;; %1 and %2 are replaced with HTML markup</extracomment>
         <translation>
             <numerusform>ტრეკერს გააჩნდა %1 %Ln სიდერი%2</numerusform>
-            <numerusform></numerusform>
+            <numerusform>ტრეკერს გააჩნდა %1 %Ln სიდერი%2</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2565,7 +2573,7 @@ To add another primary URL, add it after a blank line.</source>
         <extracomment>Second part of phrase &quot;Tracker had ... seeder(s) and ... leecher(s) ... ago&quot;; %1 and %2 are replaced with HTML markup, %3 is duration; notice that leading space (before &quot;and&quot;) is included here</extracomment>
         <translation>
             <numerusform>და%1 %Ln ლიჩერი%2 %3ს წინ</numerusform>
-            <numerusform></numerusform>
+            <numerusform>და%1 %Ln ლიჩერი%2 %3ს წინ</numerusform>
         </translation>
     </message>
     <message>

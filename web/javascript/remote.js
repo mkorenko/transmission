@@ -1,5 +1,5 @@
 /**
- * Copyright © Jordan Lee, Dave Perrett, Malcolm Jarvis and Bruno Bierbaumer
+ * Copyright © Charles Kerr, Dave Perrett, Malcolm Jarvis and Bruno Bierbaumer
  *
  * This file is licensed under the GPLv2.
  * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -74,7 +74,7 @@ TransmissionRemote.prototype = {
 
     sendRequest: function (data, callback, context, async) {
         var remote = this;
-        if (typeof async != 'boolean') {
+        if (typeof (async) != 'boolean') {
             async = true;
         };
 
