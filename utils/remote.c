@@ -2736,11 +2736,11 @@ static int processArgs(char const* rpcurl, int argc, char const* const* argv)
                 break;
 
             case 500:
-                tr_variantDictAddBool (args, TR_KEY_sequentialDownload, true);
+                tr_variantDictAddBool(args, TR_KEY_sequentialDownload, true);
                 break;
 
             case 501:
-                tr_variantDictAddBool (args, TR_KEY_sequentialDownload, false);
+                tr_variantDictAddBool(args, TR_KEY_sequentialDownload, false);
                 break;
 
             default:

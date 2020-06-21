@@ -1020,6 +1020,17 @@ static uint64_t setFromCtor(tr_torrent* tor, uint64_t fields, tr_ctor const* cto
         }
     }
 
+    if ((fields & TR_FR_SEQUENTIAL) != 0)
+    {
+	bool sequential;
+
+        if (tr_ctorGetSequentialDownload(ctor, mode, &sequential))
+        {
+            tor->sequentialDownload = sequential;
+            ret |= TR_FR_SEQUENTIAL;
+        }
+    }
+
     if ((fields & TR_FR_MAX_PEERS) != 0)
     {
         if (tr_ctorGetPeerLimit(ctor, mode, &tor->maxConnectedPeers))

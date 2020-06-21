@@ -19,10 +19,12 @@
 
 struct optional_args
 {
+    bool isSet_sequentialDownload;
     bool isSet_paused;
     bool isSet_connected;
     bool isSet_downloadDir;
 
+    bool sequentialDownload;
     bool isPaused;
     uint16_t peerLimit;
     char* downloadDir;
@@ -308,6 +310,16 @@ bool tr_ctorGetSave(tr_ctor const* ctor)
     return ctor != NULL && ctor->saveInOurTorrentsDir;
 }
 
+void tr_ctorSetSequentialDownload(tr_ctor* ctor, tr_ctorMode mode, bool sequentialDownload)
+{
+    TR_ASSERT(ctor != NULL);
+    TR_ASSERT(mode == TR_FALLBACK || mode == TR_FORCE);
+
+    struct optional_args* args = &ctor->optionalArgs[mode];
+    args->isSet_sequentialDownload = true;
+    args->sequentialDownload = sequentialDownload;
+}
+
 void tr_ctorSetPaused(tr_ctor* ctor, tr_ctorMode mode, bool isPaused)
 {
     TR_ASSERT(ctor != NULL);
@@ -363,6 +375,23 @@ bool tr_ctorGetPeerLimit(tr_ctor const* ctor, tr_ctorMode mode, uint16_t* setmeC
     else if (setmeCount != NULL)
     {
         *setmeCount = args->peerLimit;
+    }
+
+    return ret;
+}
+
+bool tr_ctorGetSequentialDownload(tr_ctor const* ctor, tr_ctorMode mode, bool* setmeSequentialDownload)
+{
+    bool ret = true;
+    struct optional_args const* args = &ctor->optionalArgs[mode];
+
+    if (!args->isSet_sequentialDownload)
+    {
+        ret = false;
+    }
+    else if (setmeSequentialDownload != NULL)
+    {
+        *setmeSequentialDownload = args->sequentialDownload;
     }
 
     return ret;

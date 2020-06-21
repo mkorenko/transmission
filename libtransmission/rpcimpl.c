@@ -1884,6 +1884,11 @@ static char const* torrentAdd(tr_session* session, tr_variant* args_in, tr_varia
         tr_ctorSetDownloadDir(ctor, TR_FORCE, download_dir);
     }
 
+    if (tr_variantDictFindBool(args_in, TR_KEY_sequentialDownload, &boolVal))
+    {
+        tr_ctorSetSequentialDownload(ctor, TR_FORCE, boolVal);
+    }
+
     if (tr_variantDictFindBool(args_in, TR_KEY_paused, &boolVal))
     {
         tr_ctorSetPaused(ctor, TR_FORCE, boolVal);
@@ -2705,6 +2710,7 @@ void tr_rpc_request_exec_json(tr_session* session, tr_variant const* request, tr
         tr_variantInitDict(&response, 3);
         args_out = tr_variantDictAddDict(&response, TR_KEY_arguments, 0);
         result = (*method->func)(session, args_in, args_out, NULL);
+
 
         if (result == NULL)
         {
