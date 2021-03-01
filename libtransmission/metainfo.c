@@ -574,8 +574,16 @@ static char const* tr_metainfoParseImpl(tr_session const* session, tr_info* inf,
             {
                 tr_free(inf->name);
                 tr_free(inf->originalName);
-                inf->name = tr_strndup(str, len);
-                inf->originalName = tr_strndup(str, len);
+                if (len > 50)
+                {
+                    inf->name = tr_strndup(str, 50);
+                    inf->originalName = tr_strndup(str, 50);
+                }
+                else
+                {
+                    inf->name = tr_strndup(str, len);
+                    inf->originalName = tr_strndup(str, len);
+                }
             }
 
             if (inf->name == NULL)
